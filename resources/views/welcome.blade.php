@@ -78,15 +78,15 @@
     <!--BODY-->
     <div class="p-4">
         @if($jadwal->isEmpty() && $ruang->isEmpty())
-        <div id="about-section" class="p-4 flex items-center justify-center h-auto mb-4">
-            <div class="p-4">
-                <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Manajemen</span> Ruangan dan Kegiatan</h1>
-                <p class="mb-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400 hidden md:block">
-                    Media Penjadwalan dan Manajemen Ruangan Dinas Komunikasi dan Informatika (DINKOMINFO) Kabupaten
-                    Banyumas.
-                </p>
+            <div id="about-section" class="p-4 flex items-center justify-center h-auto mb-4">
+                <div class="p-4">
+                    <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Manajemen</span> Ruangan dan Kegiatan</h1>
+                    <p class="mb-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400 hidden md:block">
+                        Media Penjadwalan dan Manajemen Ruangan Dinas Komunikasi dan Informatika (DINKOMINFO) Kabupaten
+                        Banyumas.
+                    </p>
+                </div>
             </div>
-        </div>
         @else
         <div id="about-section" class="p-4 flex items-center justify-center h-auto mb-4">
             <div class="p-4">
@@ -111,7 +111,6 @@
                 @php
                 $sortedJadwal = $jadwal->sortBy('date');
             @endphp
-            
             <div class="relative max-h-96 overflow-x-auto overflow-y-scroll shadow-md sm:rounded-lg" style="max-height: 500px;">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
