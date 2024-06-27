@@ -25,12 +25,8 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
-- [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -40,7 +36,7 @@ Laravel, yang dikenal dengan sintaksis elegan dan alat-alat canggihnya, memungki
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Instruksi ini akan membantu Anda mendapatkan salinan proyek "RuangKominfo" dan menjalankannya di mesin lokal Anda untuk tujuan pengembangan dan pengujian.
 
 ### Prerequisites
 
@@ -107,54 +103,21 @@ php artisan migrate
 Jalankan Aplikasi:
 
 ```
-php artisan serve
+php artisan serve 
 ```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
+- [Deployment](https://laravel.com/docs/11.x/deployment) - Check these Laravel Documentation
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [MySQL](https://www.mysql.com/) - Database
+- [Apache ](https://httpd.apache.org/) - Server Framework
+- [Laravel](https://laravel.com/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- [@Kusmala](https://github.com/Kusmala) - Idea,Concept & Initial work
+- [@AimLesson](https://github.com/Aimlesson) - Helper:v
