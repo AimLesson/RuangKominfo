@@ -98,7 +98,7 @@
             </div>
         </div>
         <div id ="jadwal-section" >
-            <h3 class="text-4xl text-center font-bold dark:text-white mb-4">Jadwal Kegiatan Terkini</h3>
+            <h1 class="text-xl text-center font-bold dark:text-white mb-4 md:text-5xl lg:text-2xl">Jadwal Kegiatan Terkini</h1>
                 @if($jadwal->isEmpty())
                     <div class="flex items-center justify-center mb-4">
                         <div class="text-center bg-white border border-gray-200 rounded-lg shadow p-5 dark:bg-gray-800 dark:border-gray-700">
@@ -162,7 +162,7 @@
             @endif
         </div>
         <div id="ruangan-section">
-            <h2 class="text-4xl text-center font-bold dark:text-white mb-4">Ruangan</h2>
+            <h2 class="text-xl text-center font-bold dark:text-white mb-4 md:text-5xl lg:text-2xl">Ruangan</h2>
             @if($ruang->isEmpty())
                 <div class="flex items-center justify-center mb-4">
                     <div class="text-center bg-white border border-gray-200 rounded-lg shadow p-5 dark:bg-gray-800 dark:border-gray-700">
