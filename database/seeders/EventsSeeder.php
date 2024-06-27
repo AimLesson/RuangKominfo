@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
-class EventSeeder extends Seeder
+class EventsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,7 @@ class EventSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             $randomRoom = array_rand($rooms);
-            DB::table('event')->insert([
+            DB::table('events')->insert([
                 'nama_penanggungjawab' => $faker->name,
                 'acara' => $faker->sentence(3),
                 'id_rooms' => $rooms[$randomRoom],
