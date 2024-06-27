@@ -366,33 +366,33 @@
         // Update the date and time every second
         setInterval(updateClock, 1000);
     </script>
-    <!-- Flowbite JavaScript for mobile menu -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <!-- Custom JavaScript for Scrollspy -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(a => {
-                    a.classList.remove('active-link');
-                    if (a.getAttribute('href').includes(current)) {
-                        a.classList.add('active-link');
-                    }
-                });
-            });
-        });
-    </script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const sections = document.querySelectorAll('section');
+              const navLinks = document.querySelectorAll('nav a');
+  
+              window.addEventListener('scroll', () => {
+                  let current = '';
+                  sections.forEach(section => {
+                      const sectionTop = section.offsetTop;
+                      const sectionHeight = section.clientHeight;
+                      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                          current = section.getAttribute('id');
+                      }
+                  });
+  
+                  navLinks.forEach(a => {
+                      a.classList.remove('active-link');
+                      if (a.getAttribute('href').includes(current)) {
+                          a.classList.add('active-link');
+                      }
+                  });
+              });
+          });
+      </script>
+    <!-- Flowbite JavaScript for mobile menu -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 
 </html>
