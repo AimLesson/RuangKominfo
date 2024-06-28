@@ -5,7 +5,16 @@
         </h2>
     </x-slot>
 
-    <div class="p-12">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @if($bookings->isEmpty())
+        <div class="flex items-center justify-center mb-4">
+            <div class="text-center bg-white border border-gray-200 rounded-lg shadow p-5 ">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Tidak ada Jadwal Tersedia</h5>
+               <p class="mb-3 font-normal text-gray-700 ">Tidak ada Jadwal untuk ditampilkan. Silahkan cek kembali nanti.</p>
+           </div>
+        </div>
+        @else
         @foreach ($bookings->groupBy('nama_rooms') as $room => $roomBookings)
             <div class="p-4 m-4 border relative max-h-96 overflow-x-auto overflow-y-scroll shadow-md sm:rounded-lg" style="max-height: 500px;">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">{{ $room }}</h3>
@@ -89,15 +98,11 @@
                                 </td>
                             </tr>
                         @endforeach
-                        <tr>
-                            <td colspan="9" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="{{ route('booking.create') }}" class="text-green-600 hover:text-green-900">Tambah Jadwal</a>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         @endforeach
+        @endif
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

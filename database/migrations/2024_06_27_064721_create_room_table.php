@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_ruang');
             $table->string('image');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->enum('status',['Tersedia','Tidak Tersedia']);
             $table->timestamps();
         });

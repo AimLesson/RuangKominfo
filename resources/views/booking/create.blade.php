@@ -1,9 +1,34 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Jadwalkan Ruangan') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RuangKominfo</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Custom CSS for background image -->
+    <style>
+        body {
+            background-image: url('{{ asset('asset/bg.png')}}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            font-family: 'Figtree', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            /* Smooth scrolling */
+        }
+    </style>
+</head>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -38,9 +63,9 @@
                             <select id="asalbidang" name="asalbidang"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required>
-                                @foreach($asalbidang as $event)
-                                    <option value="{{ $event->asalbidang }}">{{ $event->asalbidang }}</option>
-                                @endforeach
+                                <option value="Informasi dan Komunikasi Publik">Informasi dan Komunikasi Publik</option>
+                                <option value="Aplikasi Informatika">Aplikasi Informatika</option>
+                                <option value="Statistik dan Persandian">Statistik dan Persandian</option>
                             </select>
                         </div>
                         <div>
@@ -63,8 +88,12 @@
                         </div>
                         <input type="hidden" id="nama_rooms" name="nama_rooms" value="" />
                     </div>
-                    <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                    <div class="flex">
+                        <button type="submit" class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                        <a href="{{ route('outside.show', $room->id) }}" class="ms-3 mt-6 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">                        
+                            Kembali
+                        </a>  
+                    </div>
                 </form>
             </div>
         </div>
@@ -76,18 +105,19 @@
         document.getElementById('id_rooms').addEventListener('change', function() {
             document.getElementById('nama_rooms').value = this.options[this.selectedIndex].text;
         });
-
+    
         // Set initial value
         document.getElementById('nama_rooms').value = document.getElementById('id_rooms').options[document.getElementById('id_rooms').selectedIndex].text;
-
+    
         @if (session('success'))
             toastr.success("{{ session('success') }}");
         @endif
-
+    
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error("{{ $error }}");
             @endforeach
         @endif
     </script>
-</x-app-layout>
+</body>
+</html>
