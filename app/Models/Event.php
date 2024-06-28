@@ -12,7 +12,7 @@ class Event extends Model
     protected $table = 'events';
 
     protected $fillable = [
-        'nama',
+        'nama_penanggungjawab',
         'acara',
         'id_rooms',
         'nama_rooms',

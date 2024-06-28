@@ -123,6 +123,7 @@
                             <th scope="col" class="px-6 py-3">Waktu Mulai</th>
                             <th scope="col" class="px-6 py-3">Waktu Selesai</th>
                             <th scope="col" class="px-6 py-3">Durasi</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
                             <th scope="col" class="px-6 py-3">Penanggung Jawab</th>
                         </tr>
                     </thead>
@@ -150,6 +151,7 @@
                                     @endphp
                                     {{ $duration }}
                                 </td>
+                                <td class="px-6 py-4">{{ $j->status }}</td>
                                 <td class="px-6 py-4">{{ $j->nama_penanggungjawab }}</td>
                             </tr>
                         @endforeach
