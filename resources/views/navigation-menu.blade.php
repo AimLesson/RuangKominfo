@@ -157,6 +157,15 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('booking.index') }}" :active="request()->routeIs('booking.index')">
+                {{ __('Jadwal Kegiatan') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('rooms.index') }}" :active="request()->routeIs('rooms.index')">
+                {{ __('Daftar Ruang') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('rooms.create') }}" :active="request()->routeIs('rooms.creare')">
+                {{ __('Tambah Ruang') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
