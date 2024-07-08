@@ -99,14 +99,43 @@
             </div>
         @else
             <div id="about-section" class="p-4 flex items-center justify-center h-auto mb-4">
-                <div class="p-4">
-                    <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
-                            class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Manajemen</span>
-                        Ruangan dan Kegiatan</h1>
-                    <p class="mb-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400 hidden md:block">
-                        Media Penjadwalan dan Manajemen Ruangan Dinas Komunikasi dan Informatika (DINKOMINFO) Kabupaten
-                        Banyumas.
-                    </p>
+                <div id="indicators-carousel" class="relative w-full" data-carousel="static">
+                    <!-- Carousel wrapper -->
+                    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                        @foreach ($ruang as $index =>$r)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ asset('storage/' . $r->image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{ $r->nama_ruang }}">
+                                @if ($index === 0)
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <h2 class="text-4xl font-bold text-white">Welcome</h2>
+                                </div>
+                            @endif
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- Slider indicators -->
+                    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
+                        @foreach ($ruang as $index => $r)
+                            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide {{ $index + 1 }}" data-carousel-slide-to="{{ $index }}"></button>
+                        @endforeach
+                    </div>
+                    <!-- Slider controls -->
+                    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
                 </div>
             </div>
             <div id ="jadwal-section">
@@ -123,15 +152,37 @@
                         </div>
                     </div>
                 @else
+                <div id="jadwal-section" class="p-4">
                     <div class="flex items-center justify-center mb-4">
-                        @php
-                            $sortedJadwal = $jadwal->sortBy('date');
-                        @endphp
-                        <div class="relative max-h-96 overflow-x-auto overflow-y-scroll shadow-md sm:rounded-lg"
-                            style="max-height: 500px;">
-                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
+                        <form id="filter-form" class="space-y-4">
+                            <div class="flex flex-col md:flex-row md:space-x-4">
+                                <div>
+                                    <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Date</label>
+                                    <input type="date" id="start_date" name="start_date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End Date</label>
+                                    <input type="date" id="end_date" name="end_date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="room" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room</label>
+                                    <select id="room" name="room" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Select Room</option>
+                                        @foreach ($ruang as $r)
+                                            <option value="{{ $r->nama_ruang }}">{{ $r->nama_ruang }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex justify-center">
+                                <button type="button" onclick="filterJadwal()" class="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="relative max-h-96 overflow-x-auto overflow-y-scroll shadow-md sm:rounded-lg" style="max-height: 500px;">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="jadwal-table">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">No</th>
                                         <th scope="col" class="px-6 py-3">Nama Kegiatan</th>
@@ -145,42 +196,13 @@
                                         <th scope="col" class="px-6 py-3">Penanggung Jawab</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @php $counter = 1; @endphp
-                                    @foreach ($sortedJadwal as $j)
-                                        <tr
-                                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $counter++ }}
-                                            </th>
-                                            <td class="px-6 py-4">{{ $j->acara }}</td>
-                                            <td class="px-6 py-4">{{ $j->asalbidang }}</td>
-                                            <td class="px-6 py-4">{{ $j->nama_rooms }}</td>
-                                            <td class="px-6 py-4">{{ $j->date }}</td>
-                                            <td class="px-6 py-4">{{ $j->start }}</td>
-                                            <td class="px-6 py-4">{{ $j->finish }}</td>
-                                            <td class="px-6 py-4">
-                                                @php
-                                                    $start = new DateTime($j->start);
-                                                    $finish = new DateTime($j->finish);
-                                                    $interval = $start->diff($finish);
-                                                    $hours = $interval->h;
-                                                    $minutes = $interval->i;
-                                                    $duration = $hours . ' jam ' . $minutes . ' menit';
-                                                @endphp
-                                                {{ $duration }}
-                                            </td>
-                                            <td class="px-6 py-4">{{ $j->status }}</td>
-                                            <td class="px-6 py-4">{{ $j->nama_penanggungjawab }}</td>
-                                        </tr>
-                                    @endforeach
+                                <tbody id="jadwal-body">
+                                    <!-- Dynamic rows will be added here based on filter -->
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
+                </div>
                 @endif
             </div>
             <div id="ruangan-section">
@@ -304,6 +326,60 @@
     </script>
     <!-- Flowbite JavaScript for mobile menu -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <script>
+const jadwalData = @json($jadwal);
+
+function filterJadwal() {
+    console.log("Data before filtering:", jadwalData);
+    const startDate = document.getElementById('start_date').value;
+    const endDate = document.getElementById('end_date').value;
+    const room = document.getElementById('room').value;
+
+    const filteredJadwal = jadwalData.filter(j => {
+        const jadwalDate = new Date(j.date);
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        return (!startDate || jadwalDate >= start) && (!endDate || jadwalDate <= end) && (!room || j.nama_rooms === room);
+    });
+
+    const jadwalBody = document.getElementById('jadwal-body');
+    jadwalBody.innerHTML = '';
+
+    if (filteredJadwal.length === 0) {
+        const noDataRow = document.createElement('tr');
+        noDataRow.innerHTML = `<td colspan="10" class="px-6 py-4 text-center">Tidak ada Jadwal untuk ditampilkan. Silahkan cek kembali nanti.</td>`;
+        jadwalBody.appendChild(noDataRow);
+        return;
+    }
+
+    let counter = 1;
+    filteredJadwal.forEach(j => {
+        const row = document.createElement('tr');
+        row.className = 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600';
+        
+        const start = new Date(`1970-01-01T${j.start}:00`);
+        const finish = new Date(`1970-01-01T${j.finish}:00`);
+        const duration = new Date(finish - start).toISOString().substr(11, 5).replace(/^0(?:0:0?)?/, '');
+
+        row.innerHTML = `
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${counter++}</th>
+            <td class="px-6 py-4">${j.acara}</td>
+            <td class="px-6 py-4">${j.asalbidang}</td>
+            <td class="px-6 py-4">${j.nama_rooms}</td>
+            <td class="px-6 py-4">${j.date}</td>
+            <td class="px-6 py-4">${j.start}</td>
+            <td class="px-6 py-4">${j.finish}</td>
+            <td class="px-6 py-4">${duration} jam</td>
+            <td class="px-6 py-4">${j.status}</td>
+            <td class="px-6 py-4">${j.nama_penanggungjawab}</td>
+        `;
+        jadwalBody.appendChild(row);
+    });
+}
+
+    </script>
 </body>
 
 </html>
