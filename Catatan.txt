@@ -1,0 +1,23 @@
+Login->role(admin, user)
+Register->default_role(user)
+
+Login =
+If(role == admin)
+{
+	membuka halaman utama dengan fitur dan akses administrator
+}
+elseif(role == user)
+{
+	membuka halaman utama dengan fitur an akses user
+}
+
+Fitur dan Akses = 
+Admin -> Semua Fitur CRUD Jadwal dan Ruangan dan memberi persetujuan Booking Ruangan
+User -> Fitur mengajukan peminjaman Ruangan (selain itu fitur lain tidak bisa diakses
+
+Role = 
+Admin -> bisa meng-update role tiap akun yang tersedia menjadi admin atau user (coming soon via profile page)
+User -> tidak memiliki fitur dan Akses untuk mengupdate Role
+
+
+
